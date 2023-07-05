@@ -1,0 +1,21 @@
+.formCantrol{
+
+}
+
+.formCantrol.error input,
+.formCantrol.error textarea
+{
+border: 3px solid rgb(255, 0, 0);
+}
+.formCantrol.error span
+{
+    color: rgb(255, 0, 0);
+    font-size: 15px;
+}
+
+.formSummaryError{
+    background: #f44336;
+    padding: 15px;
+color: #ffffff;
+    font-size: 45px
+}

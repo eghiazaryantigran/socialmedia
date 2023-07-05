@@ -1,0 +1,21 @@
+
+
+.bgimg img{
+    width: 100%;
+}
+
+
+.descriptionBlog{
+padding: 10px;
+}
+
+li{
+    list-style: none;
+    font-weight: bold;
+    color: #FFFFFFFF;
+    text-align: center;
+}
+.UserPhoto{
+    display: block;
+    margin: auto;
+}

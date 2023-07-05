@@ -1,0 +1,43 @@
+.header {
+    grid-area: h;
+    background: #1f7d7d;
+
+}
+
+header img {
+    width: 50px;
+    margin-left: 50px;
+}
+.loginBlock{
+    float: right;
+
+}
+.loginBlock a{
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.log_out{
+    outline: none;
+    border: none;
+    padding: 25px;
+    color: #ffffff;
+    background: rgba(255, 69, 0, 0.91);
+    font-size: 18px;
+
+
+
+}
+
+.log_out:hover{
+    background: #ff4500;
+
+}
+
+.loginNAme{
+    font-size: 18px;
+    color: white;
+    letter-spacing: 2px;
+    text-shadow: #FC0 1px 0 10px;
+}
