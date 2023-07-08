@@ -14,6 +14,7 @@ import { compose } from 'redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import {initializeApp} from "./components/Redux/app_reducer";
 import Preloader from "./components/common/Preloader/Preloader";
+import News from "./components/News/News";
 
 
 function withRouter(Component) {
@@ -64,7 +65,7 @@ class App extends React.Component {
                         <Route exact path="/dialogs/*"
                                element={<DialogsContainer/>}/>
                         <Route exact path="/users" element={<UsersContainer/>}/>
-                        {/*<Route path="/news" element={<News/>}/>*/}
+                        <Route path="/news" element={<News/>}/>
                         <Route path="/music" element={<Music/>}/>
                         <Route path="/setings" element={<Setings/>}/>
                     </Routes>

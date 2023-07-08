@@ -3,6 +3,7 @@ import s from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
 import {updateStatus} from "../../Redux/profile_reducer";
+import ProfileStatusWhiteHooks from "./ProfileStatusWhiteHooks";
 
 
 
@@ -35,7 +36,7 @@ if (!props.profile){
 
                     </ul>
                 </div>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+                <ProfileStatusWhiteHooks status={props.status} updateStatus={props.updateStatus} />
             </div>
 
 

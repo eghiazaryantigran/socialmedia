@@ -102,11 +102,12 @@ export const toggleFallowingProgress = (isFetching,userId) => ({type: TOGGLE_IS_
 
 
 
-export const getUsers=(currentPage,pageSize)=> {
+export const requestUsers=(page, pageSize)=> {
    return (dispatch) => {
         dispatch(toggleisFetching(true))
+        dispatch(setCurrentPage(page)) //ejy poxi
 
-        userAPI.getUsers(currentPage,pageSize).then(data => {
+        userAPI.getUsers(page,pageSize).then(data => {
             dispatch(toggleisFetching(false))
 
             dispatch(setUsers(data.items))

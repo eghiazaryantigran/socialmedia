@@ -1,12 +1,13 @@
 import React from "react";
 import {
-    follow, getUsers,
+    follow,
     setCurrentPage,
     setUsers,
     setUsersTotalCount,
     toggleFallowingProgress,
     toggleisFetching,
-    unfollow
+    requestUsers,
+    unfollow,
 } from "../Redux/users_reducer";
 import loader from "../../assac/images/loader.gif";
 import {connect} from "react-redux";
@@ -16,19 +17,27 @@ import Preloader from "../common/Preloader/Preloader";
 import {userAPI} from "../../api/api";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 import {compose} from "redux";
+import {
+    GetCurrentPage,
+    GetfallowingInProgress,
+    GetisFetching,
+    GetPageSize,
+    GetTotalUsersCount,
+    GetUsers,
+} from "../Redux/users-selectors";
 
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
 
-        this.props.getUsers(this.props.currentPage,this.props.pageSize);
+        this.props.requestUsers(this.props.currentPage,this.props.pageSize);
 
     }
 
     onPageChanged = (pageNumber) => {
 
-        this.props.getUsers(pageNumber,this.props.pageSize);
+        this.props.requestUsers(pageNumber,this.props.pageSize);
 
 
 
@@ -53,45 +62,34 @@ class UsersContainer extends React.Component {
 
 }
 
+// let mapStateTopProps = (state) => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         fallowingInProgress: state.usersPage.fallowingInProgress,
+//
+//     }
+//
+// }
+
 let mapStateTopProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        fallowingInProgress: state.usersPage.fallowingInProgress,
+        // users: state.usersPage.users,
+        users: GetUsers(state),
+        pageSize: GetPageSize(state),
+        totalUsersCount: GetTotalUsersCount(state),
+        currentPage: GetCurrentPage(state),
+        isFetching: GetisFetching(state),
+        fallowingInProgress: GetfallowingInProgress(state)
 
     }
 
 }
 
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         follow: (userid) => {
-//             dispatch(followAc(userid))
-//         },
-//         unfollow: (userid) => {
-//             dispatch(unfollowAc(userid))
-//         },
-//         setUsers: (users) => {
-//             dispatch(setUsersAc(users))
-//         },
-//
-//         setCurrentPage: (pagenumber) => {
-//             dispatch(setCurrentPageAc(pagenumber))
-//         },
-//
-//         setTotalUsersCount: (totalCount) => {
-//             dispatch(setUsersTotalCountAc(totalCount))
-//         },
-//
-//         toggleisFetching: (isFetching) => {
-//             dispatch(TOGGLE_IS_FEATCHINGAc(isFetching))
-//         }
-//
-//     }
-// }
+
 
 
 
@@ -103,6 +101,6 @@ export default compose(
         unfollow,
         setCurrentPage,
         toggleFallowingProgress,
-        getUsers,
+        requestUsers,
     }),
 )(UsersContainer)
