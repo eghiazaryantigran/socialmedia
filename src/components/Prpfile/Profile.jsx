@@ -6,7 +6,6 @@ import MyPostsContainer from "./MyyPosts/MyPostsContainer";
 
 
 const Profile = (props) => {
-
     return (
         <div>
 

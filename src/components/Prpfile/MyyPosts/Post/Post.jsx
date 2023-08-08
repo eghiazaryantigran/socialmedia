@@ -1,5 +1,6 @@
 import React from "react";
 import p from "./Post.module.css";
+import users_defolt_photo_post from "../../../../assac/images/users_defolt_photo_post .png"
 
 
 const Post = (props) => {
@@ -9,7 +10,7 @@ const Post = (props) => {
 
                 <div className="posts">
                     <div className={p.item}>
-                        <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoqWIPKg9kRQhn9r3qgpcRSACAXvg-dbTOWQiDN6b5ahLRZ-AU_ioL_uXv5Un0kNGPNhE&usqp=CAU" alt=""/>
+                        <img  src={users_defolt_photo_post} alt=""/>
                         {props.message}
                         <div>
                     <span>LIKE</span> {props.likeCounts}

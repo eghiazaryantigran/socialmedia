@@ -29,16 +29,16 @@ import {
 
 class UsersContainer extends React.Component {
 
-    componentDidMount() {
 
-        this.props.requestUsers(this.props.currentPage,this.props.pageSize);
+    componentDidMount() {
+        const {currentPage, pageSize} = this.props;
+        this.props.requestUsers(currentPage, pageSize);
 
     }
 
     onPageChanged = (pageNumber) => {
 
-        this.props.requestUsers(pageNumber,this.props.pageSize);
-
+        this.props.requestUsers(pageNumber, this.props.pageSize);
 
 
     }
@@ -90,10 +90,7 @@ let mapStateTopProps = (state) => {
 }
 
 
-
-
-
- // let withRedirect=withAuthRedirect(UsersContainer)
+// let withRedirect=withAuthRedirect(UsersContainer)
 export default compose(
     // withAuthRedirect, //toxum enq vor karanan mtnen naen
     connect(mapStateTopProps, {

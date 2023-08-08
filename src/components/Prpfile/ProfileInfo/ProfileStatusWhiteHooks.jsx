@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import s from "./ProfileInfo.module.css";
 
 
@@ -7,7 +7,9 @@ const ProfileStatusWhiteHooks =(props)=>{
     const[EditMode,SetEditMode]=useState(false)
     const[status,SetStatus]=useState(props.status)
 
-
+useEffect(()=>{
+    SetStatus(props.status)
+},[props.status])
 // let SteteWhiteSetStete=useState(true)
 //     let EditMode=SteteWhiteSetStete[0]
 //     let SetEditMode=SteteWhiteSetStete[1]

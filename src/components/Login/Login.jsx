@@ -1,27 +1,32 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Input} from "../common/FormsControls/FormsControls";
+import {createFild, Input,} from "../common/FormsControls/FormsControls";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../Redux/auth_reducer";
 import {Navigate } from 'react-router-dom';
 import s from "./../common/FormsControls/FormsControl.module.css"
-let LoginForm =(props)=>{
+let LoginForm =({handleSubmit,error})=>{
     return(
-            <form onSubmit={props.handleSubmit}>
+            <form onSubmit={handleSubmit}>
 
-                <div>
-                    <Field  placeholder={"Email"} component={Input} name={"email"} validate={[required,maxLengthCreator(50)]}/>
-                </div>
-                <div>
-                    <Field  placeholder={"Password"} component={Input} name={"password"} validate={[required,maxLengthCreator(20)]}/>
-                </div>
-                <div>
-                    <Field type="checkbox" name={"rememberME"} component={Input} validate={[required]}/>Remember me
+                {/*<div>*/}
+                {/*    <Field  placeholder={"Email"} component={Input} name={"email"} validate={[required,maxLengthCreator(50)]}/>*/}
+                {/*</div>*/}
 
-                </div>
-                {props.error &&
-                    <div className={s.formSummaryError} > {props.error}</div>
+                {createFild("Email","email",[required,maxLengthCreator(50)], Input )}
+                {createFild("Password","password",[required,maxLengthCreator(50)], Input,{type:"password"} )}
+                {createFild(null,"RememberMe",[required,maxLengthCreator(50)], Input,{type:"checkbox"},"Remember me" )}
+
+                {/*<div>*/}
+                {/*    <Field  placeholder={"Password"} component={Input} name={"password"} validate={[required,maxLengthCreator(20)]}/>*/}
+                {/*</div>*/}
+                {/*<div>*/}
+                {/*    <Field type="checkbox" name={"rememberME"} component={Input} validate={[required]}/>Remember me*/}
+
+                {/*</div>*/}
+                {error &&
+                    <div className={s.formSummaryError} > {error}</div>
 
                 }
 

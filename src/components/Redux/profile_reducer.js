@@ -2,6 +2,8 @@ import {profileAPI, userAPI} from "../../api/api";
 
 const Add_post="ADD-POST";
 
+const Delete_Post="Delete_Post";
+
 // const Updatneposttext="UPDATE-NEW-POST-TEXT";
 
 
@@ -27,6 +29,11 @@ let initialState={
             message: "'\'I\'s,my first post URAAA!'",
             likeCounts: 23
         },
+        {
+            id: 4,
+            message: "'\'I\'s,happyy!'",
+            likeCounts: 28
+        },
     ],
     // newPostText: "Es im anush hayastan",
     profile: null,
@@ -42,6 +49,12 @@ let initialState={
              };
 
             return{...state,posts:[...state.posts,newPost],newPostText:""}
+
+         }
+
+         case Delete_Post: {
+
+            return{...state,posts:state.posts.filter((p=>p.id !== action.postId))}
 
          }
          // case Updatneposttext: {
@@ -69,28 +82,28 @@ export const addPostActionCreator =(newPostText)=>({type:Add_post,newPostText})
 export const SetUserProfile =(profile)=>({type:SET_USER_PROFILE,profile})
 export const SetStatus =(status)=>({type:SET_STATUS,status})
 
+export const deletePost =(postId)=>({type:Delete_Post,postId})
+
+
 //thunk
-export const getUserProfile =(userId)=>(dispatch)=>{
-    userAPI.getProfile(userId).then(response => {
+export const getUserProfile =(userId)=>async (dispatch)=>{
+    let response= await userAPI.getProfile(userId)
+
         dispatch(SetUserProfile(response.data))
 
-    })
-
 }
 
-export const getStatus =(userId)=>(dispatch)=>{
-    profileAPI.getStatus(userId).then(response => {
+export const getStatus =(userId)=> async (dispatch)=>{
+    let response= await  profileAPI.getStatus(userId)
         dispatch(SetStatus(response.data))
 
-    })
-
 }
-export const updateStatus =(status)=>(dispatch)=>{
-    profileAPI.updateStatus(status).then(response => {
+export const updateStatus =(status)=> async (dispatch)=>{
+    let response= await profileAPI.updateStatus(status)
         if(response.data.resultCode===0){
             dispatch(SetStatus(status))
         }
-    })
+
 
 }
 

@@ -1,5 +1,4 @@
 
-
 .bgimg img{
     width: 100%;
 }
@@ -18,4 +17,9 @@ li{
 .UserPhoto{
     display: block;
     margin: auto;
+}
+
+.gradient_info{
+    background: linear-gradient(#00ecff, #9198e5);
+
 }

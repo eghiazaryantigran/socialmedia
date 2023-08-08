@@ -1,22 +1,21 @@
 import React from "react";
 import p from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {Field,reduxForm} from "redux-form";
+import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {Textarea} from "../../common/FormsControls/FormsControls";
 
 
-
-const MyPosts = (props) => {
-
-    let postsElements =props.posts.map(p=>{
-        return(
+const MyPosts = React.memo((props) => {
+    console.log("props")
+    let postsElements = props.posts.map(p => {
+        return (
             <Post message={p.message} key={p.id} likeCounts={p.likeCounts}/>
         )
     })
-let newPostElement =React.createRef()
+    // let newPostElement = React.createRef()
 
-    const onAddPost=(values)=>{
+    const onAddPost = (values) => {
         props.addPost(values.newPostText);
         console.log(values.newPostText)
 
@@ -35,7 +34,7 @@ let newPostElement =React.createRef()
             <div className={p.postsBlog}>
                 <h3>My Post</h3>
 
-                <AddPostFormRedux onSubmit={onAddPost} />
+                <AddPostFormRedux onSubmit={onAddPost}/>
                 <div className={p.posts}>
                     {/*new post*/}
                 </div>
@@ -49,7 +48,7 @@ let newPostElement =React.createRef()
         </div>
 
     )
-}
+});
 
 
 let AddNewPostForm=(props)=>{

@@ -24,18 +24,23 @@ if (!props.profile){
             {/*</div>*/}
             <div className={s.descriptionBlog}>
 
-     <img src={props.profile.photos.large} className={s.UserPhoto}/>
-                <div>
-                    <ul>
-                        <li>{props.profile.fullName}</li>
+                <div className={s.gradient_info}>
+                    <img src={props.profile.photos.large} className={s.UserPhoto}/>
+                    <div>
+                        <ul>
+                            <li>{props.profile.fullName}</li>
 
-                        <li>{props.profile.aboutMe}</li>
-                        <li>{props.profile.contacts.twitter}</li>
-                        <li>{props.profile.lookingForAJobDescription}</li>
-                        <li>id {props.profile.userId}</li>
+                            <li>{props.profile.aboutMe}</li>
+                            <li>{props.profile.contacts.twitter}</li>
+                            <li>{props.profile.lookingForAJobDescription}</li>
+                            <li>id {props.profile.userId}</li>
 
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
+
+
+
                 <ProfileStatusWhiteHooks status={props.status} updateStatus={props.updateStatus} />
             </div>
 
