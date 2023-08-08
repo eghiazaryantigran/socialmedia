@@ -22,8 +22,12 @@ let reducers = combineReducers({
 })
 
 
+// google extination start
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
  const store = createStore(reducers, /* preloadedState, */ composeEnhancers(applyMiddleware(thunkMiddleware)
 ));
+
+ //end google extination
 // let store = createStore(reducers,applyMiddleware(thunkMiddleware));
 export default store;
