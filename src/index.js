@@ -1,10 +1,8 @@
 import React from 'react';
 import store from "./components/Redux/redux-store";
 import ReactDOM from 'react-dom/client';
-import {BrowserRouter} from "react-router-dom";
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {Provider} from "react-redux"
+import SochialMediaApp from "./App";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,11 +11,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(
 
         <React.StrictMode>
-            <BrowserRouter>
-                <Provider store={store}>
-                <App/>
-                </Provider>
-            </BrowserRouter>
+            <SochialMediaApp/>
 
         </React.StrictMode>
     )

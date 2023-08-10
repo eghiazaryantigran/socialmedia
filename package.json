@@ -31,12 +31,11 @@
       "react-app/jest"
     ]
   },
-
   "jest": {
-  "transformIgnorePatterns": [
-    "node_modules/(?!(react-leaflet|@react-leaflet|d3-*|axios))"
-  ]
-},
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-leaflet|@react-leaflet|d3-*|axios))"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -48,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-test-renderer": "^18.2.0"
   }
 }

@@ -42,7 +42,6 @@ activateEditMode=()=>{
 
     render() {
 
-        console.log("render")
 
         return (
 
