@@ -8,7 +8,7 @@ let User = ({user,fallowingInProgress,unfollow,follow}) => {
     return(
        <div>
 
-                    <span>43
+                    <span>
                         <div>
                             <NavLink to={'/profile/'+user.id}>
                             <img src={user.photos.small != null ? user.photos.small : userphoto} alt=""
