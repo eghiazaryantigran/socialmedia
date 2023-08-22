@@ -2,7 +2,7 @@ import './App.css';
 import React, {Suspense} from "react";
 import Sus_loader from "./../src/assac/images/Suspense_loader.gif"
 import Navbar from "./components/Navbar/Navbar";
-import {Routes, Route, BrowserRouter} from "react-router-dom";
+import {Routes, Route, HashRouter} from "react-router-dom";
 import Music from "./components/Music/Music";
 import Setings from "./components/Setings/Setings";
 // import DialogsContainer from "./components/Dialogs/DialogsContainer";
@@ -64,7 +64,7 @@ class App extends React.Component {
                 <div className="app-wrapper-content">
                     <Suspense fallback={<div><img src={Sus_loader}/></div>}>
 
-                    <Routes>
+                    <Routes >
                         <Route path="/profile" element={<ProfileContainer/>}>
                             <Route path=":userId" element={<ProfileContainer/>}/>
                         </Route>
@@ -100,11 +100,11 @@ let AppContainer= compose(
 
 let SochialMediaApp=(props)=>{
     return(
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                 <AppContainer/>
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 
