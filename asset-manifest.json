@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/demo-sochialmedia/static/css/main.303fd723.css",
+    "main.js": "/demo-sochialmedia/static/js/main.35a2b4e5.js",
+    "static/css/529.a245512d.chunk.css": "/demo-sochialmedia/static/css/529.a245512d.chunk.css",
+    "static/js/529.31565833.chunk.js": "/demo-sochialmedia/static/js/529.31565833.chunk.js",
+    "static/css/129.065c1cf4.chunk.css": "/demo-sochialmedia/static/css/129.065c1cf4.chunk.css",
+    "static/js/129.2989c523.chunk.js": "/demo-sochialmedia/static/js/129.2989c523.chunk.js",
+    "static/js/787.74b8d7c0.chunk.js": "/demo-sochialmedia/static/js/787.74b8d7c0.chunk.js",
+    "static/media/Suspense_loader.gif": "/demo-sochialmedia/static/media/Suspense_loader.9a6be79758ebc31e0b35.gif",
+    "static/media/user.png": "/demo-sochialmedia/static/media/user.2d6168639ee05eda142c.png",
+    "static/media/SOC-Logo.png": "/demo-sochialmedia/static/media/SOC-Logo.9fba9278c2f8a29672cc.png",
+    "static/media/loader.gif": "/demo-sochialmedia/static/media/loader.02ea87a8db7b3cfb4742.gif",
+    "index.html": "/demo-sochialmedia/index.html",
+    "main.303fd723.css.map": "/demo-sochialmedia/static/css/main.303fd723.css.map",
+    "main.35a2b4e5.js.map": "/demo-sochialmedia/static/js/main.35a2b4e5.js.map",
+    "529.a245512d.chunk.css.map": "/demo-sochialmedia/static/css/529.a245512d.chunk.css.map",
+    "529.31565833.chunk.js.map": "/demo-sochialmedia/static/js/529.31565833.chunk.js.map",
+    "129.065c1cf4.chunk.css.map": "/demo-sochialmedia/static/css/129.065c1cf4.chunk.css.map",
+    "129.2989c523.chunk.js.map": "/demo-sochialmedia/static/js/129.2989c523.chunk.js.map",
+    "787.74b8d7c0.chunk.js.map": "/demo-sochialmedia/static/js/787.74b8d7c0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.303fd723.css",
+    "static/js/main.35a2b4e5.js"
+  ]
+}
