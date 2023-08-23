@@ -1,4 +1,5 @@
 import {profileAPI, userAPI} from "../../api/api";
+import profile from "../Prpfile/Profile";
 
 const Add_post="ADD-POST";
 
@@ -9,7 +10,9 @@ const Delete_Post="Delete_Post";
 
 const SET_USER_PROFILE ="SET_USER_PROFILE";
 
-const SET_STATUS="SET_STATUS"
+const SET_STATUS="SET_STATUS";
+
+const SAVE_PHOTO_SUCCESS="SAVE_PHOTO_SUCCESS"
 
 
 let initialState={
@@ -72,6 +75,11 @@ let initialState={
              // stateCopy.newPostText
          }
 
+         case SAVE_PHOTO_SUCCESS: {
+             return{...state,profile:{...state.profile,photos:action.photos}}
+             // stateCopy.newPostText
+         }
+
          default:
              return state
      }
@@ -83,6 +91,8 @@ export const SetUserProfile =(profile)=>({type:SET_USER_PROFILE,profile})
 export const SetStatus =(status)=>({type:SET_STATUS,status})
 
 export const deletePost =(postId)=>({type:Delete_Post,postId})
+
+export const savePhotoSuccsess =(photos)=>({type:SAVE_PHOTO_SUCCESS,photos})
 
 
 //thunk
@@ -103,6 +113,16 @@ export const updateStatus =(status)=> async (dispatch)=>{
         if(response.data.resultCode===0){
             dispatch(SetStatus(status))
         }
+
+
+}
+
+
+export const savePhoto =(file)=> async (dispatch)=>{
+    let response= await profileAPI.savePhoto(file)
+    if(response.data.resultCode===0){
+        dispatch(savePhotoSuccsess(response.data.data.photos))
+    }
 
 
 }

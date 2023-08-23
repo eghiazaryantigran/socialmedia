@@ -1,10 +1,8 @@
 import React from "react";
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preloader/Preloader";
-import ProfileStatus from "./ProfileStatus";
-import {updateStatus} from "../../Redux/profile_reducer";
 import ProfileStatusWhiteHooks from "./ProfileStatusWhiteHooks";
-
+import user_defalt from "../../../assac/images/user.png"
 
 
 const ProfileInfo = (props) => {
@@ -15,17 +13,23 @@ if (!props.profile){
 
 }
 
+const onmainPhotoSelected=(e)=>{
+
+    if(e.target.files.length){
+        props.savePhoto(e.target.files[0])
+    }
+    }
+
     return (
         <div>
-            {/*<div className={s.bgimg}>*/}
-            {/*    <img*/}
-            {/*        src="https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2017/02/Photoshop-Replace-Background-Featured.jpg"*/}
-            {/*        alt=""/>*/}
-            {/*</div>*/}
             <div className={s.descriptionBlog}>
 
                 <div className={s.gradient_info}>
-                    <img src={props.profile.photos.large} className={s.UserPhoto}/>
+                    <img src={props.profile.photos.large || user_defalt } className={s.UserPhoto}/>
+                    {props.isOwner &&
+                            <input type="file" onChange={onmainPhotoSelected}/>
+                    }
+
                     <div>
                         <ul>
                             <li>{props.profile.fullName}</li>

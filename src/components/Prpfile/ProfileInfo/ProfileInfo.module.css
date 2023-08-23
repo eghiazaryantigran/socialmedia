@@ -17,9 +17,15 @@ li{
 .UserPhoto{
     display: block;
     margin: auto;
+
+    width: 200px;
+    height: 200px;
+    background-size: contain;
 }
 
 .gradient_info{
     background: linear-gradient(#00ecff, #9198e5);
 
 }
+
+
