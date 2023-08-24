@@ -1,11 +1,13 @@
-import React from "react";
+import {React,useRef} from "react";
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatusWhiteHooks from "./ProfileStatusWhiteHooks";
 import user_defalt from "../../../assac/images/user.png"
+import photoUplode from "../../../assac/images/photoUploade.png"
 
 
 const ProfileInfo = (props) => {
+    const fileInputRef = useRef(null);
 
 if (!props.profile){
     return
@@ -20,6 +22,11 @@ const onmainPhotoSelected=(e)=>{
     }
     }
 
+
+    const handleButtonClick = () => {
+        fileInputRef.current.click();
+    };
+
     return (
         <div>
             <div className={s.descriptionBlog}>
@@ -27,7 +34,15 @@ const onmainPhotoSelected=(e)=>{
                 <div className={s.gradient_info}>
                     <img src={props.profile.photos.large || user_defalt } className={s.UserPhoto}/>
                     {props.isOwner &&
-                            <input type="file" onChange={onmainPhotoSelected}/>
+
+                        <button className={s.custom_button} onClick={handleButtonClick}>
+                            <img src={photoUplode} alt=""/>
+                            <p>Select File</p>
+                                <input type="file" onChange={onmainPhotoSelected} ref={fileInputRef}
+                                       style={{display:"none"}}
+                                 />
+                         </button>
+
                     }
 
                     <div>
