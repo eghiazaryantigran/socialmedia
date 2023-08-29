@@ -34,7 +34,7 @@ useEffect(()=>{
             <div>
                 {!EditMode &&
                     <div>
-                        <span onDoubleClick={activateEditMode}>{props.status || "====" }</span>
+                      <b>Status : <span onDoubleClick={activateEditMode}>{props.status || "====" }</span></b>
                     </div>
                 }
                 {EditMode &&

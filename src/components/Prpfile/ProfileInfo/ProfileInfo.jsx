@@ -1,15 +1,19 @@
-import {React,useRef} from "react";
+import {React, useRef, useState} from "react";
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatusWhiteHooks from "./ProfileStatusWhiteHooks";
 import user_defalt from "../../../assac/images/user.png"
 import photoUplode from "../../../assac/images/photoUploade.png"
+import ProfileDataForm from "../ProfileDataForm";
+import edit from "../../../assac/images/edit-24.png"
 
+const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
 
-const ProfileInfo = (props) => {
+    const[EditMode,SetEditMode]=useState(false)
+
     const fileInputRef = useRef(null);
 
-if (!props.profile){
+if (!profile){
     return
         <Preloader />
 
@@ -18,7 +22,7 @@ if (!props.profile){
 const onmainPhotoSelected=(e)=>{
 
     if(e.target.files.length){
-        props.savePhoto(e.target.files[0])
+        savePhoto(e.target.files[0])
     }
     }
 
@@ -27,13 +31,23 @@ const onmainPhotoSelected=(e)=>{
         fileInputRef.current.click();
     };
 
+
+    const ourSubmit = (formData) => {
+        // Assuming saveProfile returns a Promise
+        saveProfile(formData)
+            .then(() => {
+                SetEditMode(false);
+            })
+
+    };
+
     return (
         <div>
             <div className={s.descriptionBlog}>
 
                 <div className={s.gradient_info}>
-                    <img src={props.profile.photos.large || user_defalt } className={s.UserPhoto}/>
-                    {props.isOwner &&
+                    <img src={profile.photos.large || user_defalt } className={s.UserPhoto}/>
+                    {isOwner &&
 
                         <button className={s.custom_button} onClick={handleButtonClick}>
                             <img src={photoUplode} alt=""/>
@@ -44,23 +58,24 @@ const onmainPhotoSelected=(e)=>{
                          </button>
 
                     }
+                    {EditMode ?
+                        <ProfileDataForm initialValues={profile} onSubmit={ourSubmit} profile={profile}/>
+                    :
+                        <ProfileData profile={profile}
+                                     isOwner={isOwner}
+                                     goToEditMode={()=>{SetEditMode(true)}}
 
+                        />
+                    }
                     <div>
-                        <ul>
-                            <li>{props.profile.fullName}</li>
-
-                            <li>{props.profile.aboutMe}</li>
-                            <li>{props.profile.contacts.twitter}</li>
-                            <li>{props.profile.lookingForAJobDescription}</li>
-                            <li>id {props.profile.userId}</li>
-
-                        </ul>
+                        <ProfileStatusWhiteHooks status={status} updateStatus={updateStatus} />
                     </div>
+
                 </div>
 
 
 
-                <ProfileStatusWhiteHooks status={props.status} updateStatus={props.updateStatus} />
+
             </div>
 
 
@@ -70,4 +85,56 @@ const onmainPhotoSelected=(e)=>{
     )
 }
 
+export const ProfileData=({profile,isOwner,goToEditMode})=>{
+    return(
+        <div>
+            {isOwner &&
+<div>
+    <button onClick={goToEditMode} className={s.icons_do_somting}>
+        <img src={edit}/>
+    </button>
+</div>
+            }
+            <div>
+                <b>Full Name:</b> {profile.fullName}
+            </div>
+
+            <div>
+                <b>Loking for a job</b>{profile.lookingForAJob ? " yes" : " no"}
+            </div>
+            {profile.lookingForAJob &&
+                <div>
+                    <b>My professional skills :</b><b>{profile.lookingForAJobDescription}</b>
+                </div>
+            }
+            <div>
+                <b>About me:{profile.aboutMe}</b>
+            </div>
+
+
+            {/*<div>*/}
+            {/*    id {props.profile.userId}*/}
+            {/*</div>*/}
+
+            <div>
+                <b>Contacts</b>: {Object.keys(
+                profile.contacts).map(p=>{
+                return(
+                    <Contact key={p} contactTitle={p} ContactValue={profile.contacts[p]}/>
+                )
+            })}
+            </div>
+
+        </div>
+    )
+}
+
+
+export const Contact=({contactTitle,ContactValue})=> {
+    return (
+    <div className={s.contact}>
+        <b>{contactTitle}</b>:{ContactValue}
+    </div>
+)
+}
 export default ProfileInfo;

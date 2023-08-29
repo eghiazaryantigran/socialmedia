@@ -1,5 +1,6 @@
 import {profileAPI, userAPI} from "../../api/api";
-import profile from "../Prpfile/Profile";
+import {stopSubmit} from "redux-form";
+import {getErrorsFromMessages} from "../common/FormsControls/FormsControls";
 
 const Add_post="ADD-POST";
 
@@ -13,6 +14,9 @@ const SET_USER_PROFILE ="SET_USER_PROFILE";
 const SET_STATUS="SET_STATUS";
 
 const SAVE_PHOTO_SUCCESS="SAVE_PHOTO_SUCCESS"
+
+
+
 
 
 let initialState={
@@ -122,6 +126,23 @@ export const savePhoto =(file)=> async (dispatch)=>{
     let response= await profileAPI.savePhoto(file)
     if(response.data.resultCode===0){
         dispatch(savePhotoSuccsess(response.data.data.photos))
+    }
+
+
+}
+
+
+
+export const saveProfile =(profile)=> async (dispatch,getState)=>{
+   let userId= getState().auth.userId;
+    let response= await profileAPI.saveProfile(profile)
+    if(response.data.resultCode===0){
+        dispatch(getUserProfile(userId))
+    }else{
+        //dispatch(stopSubmit("edit-profile",{_error:response.data.messages[0]}))// ete uzum enq mech cuych ta
+        dispatch(stopSubmit("edit-profile", { contacts: getErrorsFromMessages(response.data.messages)}));
+
+        return Promise.reject(response.data.messages[0])
     }
 
 

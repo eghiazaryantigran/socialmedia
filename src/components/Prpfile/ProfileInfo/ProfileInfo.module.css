@@ -56,3 +56,12 @@ li{
    float: right;
     font-size: 20px;
 }
+
+.contact{
+    padding-left: 10px;
+}
+
+.icons_do_somting{
+    background: transparent;
+    border: none;
+}

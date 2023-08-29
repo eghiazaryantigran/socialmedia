@@ -79,3 +79,16 @@ export const createFild=(placeholder,name,validate,component,type,about="")=>(
     />{about}
 </div>
      )
+
+
+export const getErrorsFromMessages = (messages) => {
+    let errors = Object.keys(messages).reduce((acc, key) => {
+        let errorMessage = messages[key].split("->");
+        errorMessage = errorMessage[1]
+            .slice(0, errorMessage[1].length - 1)
+            .toLowerCase();
+        return { ...acc, [errorMessage]: messages[key] };
+    }, {});
+
+    return errors;
+};
