@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {login} from "../Redux/auth_reducer";
 import {Navigate } from 'react-router-dom';
 import s from "./../common/FormsControls/FormsControl.module.css"
-let LoginForm =({handleSubmit,error})=>{
+let LoginForm =({handleSubmit,error,captchaUrl})=>{
     return(
             <form onSubmit={handleSubmit}>
 
@@ -30,6 +30,12 @@ let LoginForm =({handleSubmit,error})=>{
 
                 }
 
+                { captchaUrl && <img src={captchaUrl}/>}
+
+                { captchaUrl && createFild("Anti Bot Symbols","captcha",[required], Input)
+                }
+
+
 
                 <div>
                     <button>Login</button>
@@ -46,7 +52,7 @@ const LoginReduxForm = reduxForm({
 let Login =(props)=>{
 
     const ourSubmit =(formDara)=>{
-        props.login(formDara.email,formDara.password,formDara.rememberMe)
+        props.login(formDara.email,formDara.password,formDara.rememberMe,formDara.captcha)
 
     }
 
@@ -59,11 +65,12 @@ let Login =(props)=>{
 
         <div>
             <h1>Login</h1>
-         <LoginReduxForm onSubmit={ourSubmit}/>
+         <LoginReduxForm onSubmit={ourSubmit} captchaUrl={props.captchaUrl}/>
         </div>
     )
 }
 let mapStateToProps=(state)=>({
+    captchaUrl: state.auth.captchaUrl,
     isAuth:state.auth.isAuth
 })
 export default connect(mapStateToProps,{login}) (Login)
